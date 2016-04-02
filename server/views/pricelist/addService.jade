@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+    .container
+        .col-md-6
+            form(method='post').form-horizontal
+                fieldset
+                    .form-group
+                        label(for='service-title').col-lg-2.control-label Услуга
+                        .col-lg-6
+                            input(type="text", id="service-title", name="service", required, autofocus, autocomplete='off').form-control
+                    .form-group
+                        label(for='service-price').col-lg-2.control-label Цена
+                        .col-lg-6
+                            input(type="tel", id="service-price", name="price", required, autocomplete='off', placeholder='21.50', pattern='[0-9]+(\.[0-9][0-9]?)?').form-control
+                            span.help-block Полето приема само числови стойности. Символът използван за десетичен разделител е точка.
+                    .form-group
+                        .col-lg-10.col-lg-offset-2
+                            button(type="submit").btn.btn-primary Добави

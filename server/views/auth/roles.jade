@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+    if message.length > 0
+        .alert.alert-danger= message
+    .container
+        .col-sm-6
+            h1 Потребителски роли
+            table.table.table-striped.table-hover
+                each user in users
+                    tr
+                        td(name='email')= user.local.email
+                        td= user.role
+                        td
+                            a(href="/auth/changeRole/" + user.id).btn.btn-warning.btn-xs= user.role === 'admin' ? 'Понижаване' : 'Повишаване'

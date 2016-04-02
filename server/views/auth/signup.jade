@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+
+    .container
+        .col-sm-6.col-sm-offset-3
+            h1
+                span.fa.fa-sign-in
+                |  Регистрация
+            if message.length > 0
+                .alert.alert-danger= message
+            form(action='/auth/signup', method='post')
+                .form-group
+                    label Email
+                    input.form-control(type='email', name='email', autofocus, required)
+                .form-group
+                    label Парола
+                    input.form-control(type='password', name='password', required)
+                .form-group
+                    label Потвърди паролата
+                    input.form-control(type='password', name='confirmPassword', required)
+                button.btn.btn-warning.btn-lg(type='submit') Регистрирай ме
+            hr
+            p
+                | Вече имаш регистрация?
+                a(href='/auth/login')  Влез.

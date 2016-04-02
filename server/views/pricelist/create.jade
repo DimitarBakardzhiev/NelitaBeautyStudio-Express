@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+    .container
+        form(action='/pricelist/create', method='post').form-horizontal
+            fieldset
+                .form-group
+                    label(for='pricelist-title').col-lg-2.control-label Заглавие на ценоразпис
+                    .col-lg-4
+                        input(type="text", id="pricelist-title", name="title", required, autofocus, autocomplete='off').form-control
+
+                .form-group
+                    .col-lg-10.col-lg-offset-2
+                        button(type="submit").btn.btn-primary Добави

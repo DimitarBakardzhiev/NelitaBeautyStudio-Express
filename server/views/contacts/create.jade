@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+    .container-fluid
+        .col-sm-6.col-sm-offset-3
+            form.form-horizontal(action='/contacts/create', method='post')
+                fieldset
+                    legend Нов контакт
+                .form-group
+                    label.col-lg-2.control-label(for='contact-type') Тип контакт
+                    .col-lg-4
+                        input.form-control(type="text", id="contact-type", name='type', required, autofocus, autocomplete='off')
+                .form-group
+                    label.col-lg-2.control-label(for='contact-content') Съдържание
+                    .col-lg-4
+                        input.form-control(type="text", id="contact-content", name='content', required, autocomplete='off')
+                .form-group
+                    .col-lg-10.col-lg-offset-2
+                        button.btn.btn-primary(type="submit") Добави

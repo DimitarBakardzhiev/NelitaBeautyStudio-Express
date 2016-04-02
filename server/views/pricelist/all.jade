@@ -1,0 +1,49 @@
+extends ../layout
+
+block content
+    .container-fluid
+        .col-md-3
+            .list-group
+                - var count = 0
+                each pricelist in pricelists
+                    a(id='pricelist-link-#{count}').list-group-item.pricelist-link= pricelist.title
+                    - count++
+
+        .col-md-9
+            - count = 0
+            each pricelist in pricelists
+                div(id='pricelist-container-#{count}').container.pricelist-container
+                    h1= pricelist.title
+
+                    if isAdmin
+                        .btn-group
+                            a.btn.btn-info(href='#', data-toggle='dropdown', aria-expanded='false')
+                                span.glyphicon.glyphicon-cog  Опции
+                            a.btn.btn-info.dropdown-toggle(href='#', data-toggle='dropdown', aria-expanded='false')
+                                span.caret
+                            ul.dropdown-menu
+                                li
+                                    a(href='/pricelist/edit/' + pricelist.id) Промяна на заглавието
+                                li
+                                    a(href='/pricelist/' + pricelist.id + '/addService') Добавяне на услуга
+                                li.divider
+                                li
+                                    a(href='/pricelist/delete/' + pricelist.id, onclick='return confirm_delete()') Изтриване на ценоразписа
+                        br
+                        br
+                    table.table.table-striped.table-hover
+                        tbody
+                            each service in pricelist.services
+                                tr
+                                    td= service.service
+                                    td= parseFloat(Math.round(service.price * 100) / 100).toFixed(2) + ' лв.'
+                                    if isAdmin
+                                        td
+                                            a(href="/pricelist/editService/" + pricelist.id + '/' + service.id).btn.btn-warning.btn-xs Редактиране
+                                        td
+                                            a(href="/pricelist/removeService/" + pricelist.id + '/' + service.id, onclick='return confirm_delete()').btn.btn-danger.btn-xs Изтрий
+
+                - count++
+
+        script(src='/js/confirm.js')
+        script(src='/js/showHidePricelists.js')
